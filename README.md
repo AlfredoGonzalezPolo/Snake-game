@@ -31,8 +31,8 @@ If you find bugs or have suggestions to improve the game, feel free to open an i
 
 ## Credits
 
-| This game was developed by | [<img src="https://avatars.githubusercontent.com/u/123998047?v=4" width=115><br><sub>Alfredo González Polo</sub>](https://github.com/AlfredoGonzalezPolo) |
-| :------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| This game was developed by | [<img src="https://avatars.githubusercontent.com/u/125307480?v=4" width=115><br><sub>Alfredo González Polo</sub>](www.linkedin.com/in/alfredogonzalezpolo) |
+| :------------------------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ---
 
