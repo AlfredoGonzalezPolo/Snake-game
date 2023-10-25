@@ -34,6 +34,8 @@ public class Snakegame extends JPanel implements ActionListener, KeyListener {
   Timer gameLoop;
   boolean gameOver = false;
 
+  JButton reStartButton;
+
   Snakegame(int boardWidth, int boardHeight) {
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
@@ -54,44 +56,52 @@ public class Snakegame extends JPanel implements ActionListener, KeyListener {
     velocityY = 0;
 
     //game timer
-		gameLoop = new Timer(100, this); //how long it takes to start timer, milliseconds gone between frames 
+		gameLoop = new Timer(100, this);  
         gameLoop.start();
+
+        reStartButton = new JButton("Restart");
+  reStartButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        reStartGame();
+    }
+});
+    this.add(reStartButton);
+
+    
 	}	
    
-  
+  public void reStartGame() {
+    snakeHead = new Tile(5, 5);
+    snakeBody.clear();
+    placeFood();
+    velocityX = 0;
+    velocityY = 0;
+    gameOver = false;
+    gameLoop.start();
+    repaint();
+    requestFocusInWindow();
+    
+}
 
-  // public void startGame() {
-  //   gameLoop = new Timer(100, this);
-  //   gameLoop.start();
-  // }
-
+ 
   public void paintComponent(Graphics g){
     super.paintComponent(g);
     draw(g);
   }
 
   public void draw(Graphics g){
-
-//     //Grid
-//     for (int i = 0; i < boardWidth/tileSize; i++) {
-//       g.drawLine(i * tileSize, 0, i*tileSize, boardHeight);
-//       g.drawLine( 0, i * tileSize, boardHeight,  i*tileSize);
-// }
-
     //Food
     g.setColor(Color.red);
-    // g.fillRect(food.x * tileSize,food.y * tileSize, tileSize, tileSize);
     g.fill3DRect(food.x * tileSize,food.y * tileSize, tileSize, tileSize, true);
 
     //Snake head
     g.setColor(Color.green);
-    // g.fillRect(snakeHead.x * tileSize, snakeHead.y * tileSize, tileSize, tileSize);
     g.fill3DRect(snakeHead.x * tileSize, snakeHead.y * tileSize, tileSize, tileSize, true);
   
   //Snake body
   for (int i = 0; i < snakeBody.size(); i++) {
     Tile snakePart = snakeBody.get(i);
-    // g.fillRect(snakePart.x * tileSize, snakePart.y * tileSize, tileSize, tileSize);
     g.fill3DRect(snakePart.x * tileSize, snakePart.y * tileSize, tileSize, tileSize, true);
   }
 
@@ -164,6 +174,8 @@ g.drawString("Score: " + String.valueOf(snakeBody.size()), tileSize -16, tileSiz
       gameLoop.stop();
     }
   }
+
+ 
 
     @Override
   public void keyPressed(KeyEvent e) {
